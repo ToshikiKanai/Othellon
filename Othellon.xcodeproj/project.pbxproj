@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A118F59925CFC88C003DAC24 /* DoubleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A118F59825CFC88C003DAC24 /* DoubleViewController.swift */; };
 		A166AFAC25C82B5900603C36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A166AFAB25C82B5900603C36 /* AppDelegate.swift */; };
 		A166AFAE25C82B5900603C36 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A166AFAD25C82B5900603C36 /* SceneDelegate.swift */; };
 		A166AFB025C82B5900603C36 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A166AFAF25C82B5900603C36 /* ViewController.swift */; };
@@ -14,9 +15,17 @@
 		A166AFB625C82B5900603C36 /* Othellon.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A166AFB425C82B5900603C36 /* Othellon.xcdatamodeld */; };
 		A166AFB825C82B5C00603C36 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A166AFB725C82B5C00603C36 /* Assets.xcassets */; };
 		A166AFBB25C82B5C00603C36 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A166AFB925C82B5C00603C36 /* LaunchScreen.storyboard */; };
+		A166AFC425C82C8700603C36 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A166AFC325C82C8700603C36 /* CollectionViewCell.swift */; };
+		A166AFC725C82E4700603C36 /* CollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A166AFC625C82E4700603C36 /* CollectionViewLayout.swift */; };
+		A166AFD125CB92E200603C36 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A166AFD025CB92E200603C36 /* StartViewController.swift */; };
+		A166AFD425CBEA7300603C36 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A166AFD325CBEA7300603C36 /* ResultViewController.swift */; };
+		A17134B625ECA63C00123412 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17134B525ECA63C00123412 /* Board.swift */; };
+		A17D614425D8E83B00D9ED47 /* Cpu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17D614325D8E83B00D9ED47 /* Cpu.swift */; };
+		A1B7D51B25CE89DC001A7A96 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B7D51A25CE89DC001A7A96 /* MenuViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A118F59825CFC88C003DAC24 /* DoubleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleViewController.swift; sourceTree = "<group>"; };
 		A166AFA825C82B5900603C36 /* Othellon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Othellon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A166AFAB25C82B5900603C36 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A166AFAD25C82B5900603C36 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -26,6 +35,13 @@
 		A166AFB725C82B5C00603C36 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A166AFBA25C82B5C00603C36 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A166AFBC25C82B5C00603C36 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A166AFC325C82C8700603C36 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		A166AFC625C82E4700603C36 /* CollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewLayout.swift; sourceTree = "<group>"; };
+		A166AFD025CB92E200603C36 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
+		A166AFD325CBEA7300603C36 /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
+		A17134B525ECA63C00123412 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
+		A17D614325D8E83B00D9ED47 /* Cpu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cpu.swift; sourceTree = "<group>"; };
+		A1B7D51A25CE89DC001A7A96 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,8 +76,16 @@
 			children = (
 				A166AFAB25C82B5900603C36 /* AppDelegate.swift */,
 				A166AFAD25C82B5900603C36 /* SceneDelegate.swift */,
-				A166AFAF25C82B5900603C36 /* ViewController.swift */,
 				A166AFB125C82B5900603C36 /* Main.storyboard */,
+				A1B7D51A25CE89DC001A7A96 /* MenuViewController.swift */,
+				A166AFAF25C82B5900603C36 /* ViewController.swift */,
+				A17D614325D8E83B00D9ED47 /* Cpu.swift */,
+				A17134B525ECA63C00123412 /* Board.swift */,
+				A118F59825CFC88C003DAC24 /* DoubleViewController.swift */,
+				A166AFD325CBEA7300603C36 /* ResultViewController.swift */,
+				A166AFD025CB92E200603C36 /* StartViewController.swift */,
+				A166AFC325C82C8700603C36 /* CollectionViewCell.swift */,
+				A166AFC625C82E4700603C36 /* CollectionViewLayout.swift */,
 				A166AFB725C82B5C00603C36 /* Assets.xcassets */,
 				A166AFB925C82B5C00603C36 /* LaunchScreen.storyboard */,
 				A166AFBC25C82B5C00603C36 /* Info.plist */,
@@ -140,8 +164,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A166AFC725C82E4700603C36 /* CollectionViewLayout.swift in Sources */,
+				A166AFD125CB92E200603C36 /* StartViewController.swift in Sources */,
+				A17134B625ECA63C00123412 /* Board.swift in Sources */,
+				A166AFC425C82C8700603C36 /* CollectionViewCell.swift in Sources */,
+				A166AFD425CBEA7300603C36 /* ResultViewController.swift in Sources */,
+				A1B7D51B25CE89DC001A7A96 /* MenuViewController.swift in Sources */,
+				A118F59925CFC88C003DAC24 /* DoubleViewController.swift in Sources */,
 				A166AFB025C82B5900603C36 /* ViewController.swift in Sources */,
 				A166AFAC25C82B5900603C36 /* AppDelegate.swift in Sources */,
+				A17D614425D8E83B00D9ED47 /* Cpu.swift in Sources */,
 				A166AFB625C82B5900603C36 /* Othellon.xcdatamodeld in Sources */,
 				A166AFAE25C82B5900603C36 /* SceneDelegate.swift in Sources */,
 			);
@@ -293,11 +325,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JD7A9KH373;
 				INFOPLIST_FILE = Othellon/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = app.kanai.tossy.Othellon;
+				MARKETING_VERSION = 1.01;
+				PRODUCT_BUNDLE_IDENTIFIER = app.kanai.tossy.plusOne;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -312,11 +346,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JD7A9KH373;
 				INFOPLIST_FILE = Othellon/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = app.kanai.tossy.Othellon;
+				MARKETING_VERSION = 1.01;
+				PRODUCT_BUNDLE_IDENTIFIER = app.kanai.tossy.plusOne;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

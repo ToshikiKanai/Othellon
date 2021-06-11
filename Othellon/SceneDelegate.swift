@@ -13,10 +13,62 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        
+//        let storyboard:UIStoryboard = self.grabStoryboard()
+//        if let window = window{
+//            window.rootViewController = storyboard.instantiateInitialViewController() as UIViewController?
+//        }
+//        self.window?.makeKeyAndVisible()
+        
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
+    }
+    
+    func grabStoryboard() -> UIStoryboard{
+                   
+                   var storyboard = UIStoryboard()
+                   let height = UIScreen.main.bounds.size.height
+                   storyboard = UIStoryboard(name: "iPhone8plus", bundle: nil)
+//
+//                   if height == 844 {
+//                       storyboard = UIStoryboard(name: "Main", bundle: nil)
+//                       //iPhone12,12Pro
+//                   }else if height == 736 {
+//                       storyboard = UIStoryboard(name: "iPhone8plus", bundle: nil)
+//                       //iPhone8Plus
+//                   }else if height == 812{
+//                       storyboard = UIStoryboard(name: "iPhone11Pro", bundle: nil)
+//                        //iPhoneX,XS,11pro,
+//                   }else if height == 896{
+//                       storyboard = UIStoryboard(name: "iPhone11", bundle: nil)
+//                        //iPhoneXR,XSMAX,iPhone11,11proMax
+//                   }else if height == 926{
+//                    storyboard = UIStoryboard(name: "iPhone12ProMax", bundle: nil)
+//                    //iPhone12ProMax
+//                   }else if height == 780{
+//                    storyboard = UIStoryboard(name: "iPhone12Mini", bundle: nil)
+//                    //iPhone12Mini
+//                   }else if height == 1112{
+//
+//                       storyboard = UIStoryboard(name: "iPad", bundle: nil)
+//                   }else{
+//
+//                       switch UIDevice.current.model {
+//                       case "iPnone" :
+//                       storyboard = UIStoryboard(name: "se", bundle: nil)
+//                           break
+//                       case "iPad" :
+//                       storyboard = UIStoryboard(name: "iPad", bundle: nil)
+//                       print("iPad")
+//                           break
+//                       default:
+//                           break
+//                       }
+//                   }
+//
+            return storyboard
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

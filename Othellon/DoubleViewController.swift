@@ -7,22 +7,17 @@
 
 import UIKit
 
-class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate{
+class DoubleViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate{
     
-    @IBOutlet var FBLabel: UILabel!
-    @IBOutlet var first: UIButton!
-    @IBOutlet var second: UIButton!
-
     @IBOutlet var banBgLabel: UILabel!
     @IBOutlet public var collectionView: UICollectionView!
-    @IBOutlet var resultLabel: UILabel!
     @IBOutlet var userScoreLabel: UILabel!
     @IBOutlet var cpuScoreLabel: UILabel!
     
-    var userColor: UIColor = .white
-    var cpuColor: UIColor = .white
-    var uColor: String?
-    var cColor: String?
+    var userColor: UIColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
+    var cpuColor: UIColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
+    var uColor: String = "BLUE"
+    var cColor: String = "RED"
     
     //-- オセロ盤 ------------------------------------
     var userScore: Int = 0
@@ -34,7 +29,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     struct info {
         var user: Int = 0
         var score: Int  = 0
-        var weighting: Int = 0
+        
     }
     var ban: [info] = Array(repeating: info(user: 3, score: 0), count: 91)
     var putUser = true
@@ -48,39 +43,19 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     //盤の初期化
     func banInit(){
         for y in 1..<9 { for x in 1..<9 { ban[y*9+x].user = self.BLANK }}
-        if putUser {
-            ban[40].user = 1
-            ban[41].user = 2
-            ban[49].user = 2
-            ban[50].user = 1
-        } else {
-            ban[40].user = 2
-            ban[41].user = 1
-            ban[49].user = 1
-            ban[50].user = 2
-        }
+        
+        ban[40].user = 1
+        ban[41].user = 2
+        ban[49].user = 2
+        ban[50].user = 1
         
         ban[40].score  = 1
         ban[41].score  = 1
         ban[49].score  = 1
         ban[50].score  = 1
-        self.view.backgroundColor = #colorLiteral(red: 0.2009865046, green: 0.2592999339, blue: 0.3360507488, alpha: 1)
-//        self.canPut()
+        self.view.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
+        self.canPut()
         self.setScore()
-        
-        var i = 10
-        let weight = [30,-12,0,-1,-1,0,-12,30,0,
-                  -12,-15,-3,-3,-3,-3,-15,-12,0,
-                  0,-3,0,-1,-1,0,-3,0,0,
-                  -1,-3,-1,-1,-1,-1,-3,-1,0,
-                  -1,-3,-1,-1,-1,-1,-3,-1,0,
-                  0,-3,0,-1,-1,0,-3,0,0,
-                  -12,-15,-3,-3,-3,-3,-15,-12,0,
-                  30,-12,0,-1,-1,0,-12,30,0]
-        for w in weight {
-            ban[i].weighting = w
-            i += 1
-        }
     }
     
     //user -> cpu
@@ -208,35 +183,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         super.viewDidLoad()
         self.overrideUserInterfaceStyle = .light //ダークモード無効
         
-        self.FBLabel.layer.cornerRadius = 20
-        self.FBLabel.clipsToBounds = true
-        self.first.setTitle("First", for: .normal)
-        self.first.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
-        self.first.layer.cornerRadius = 30
-        self.second.setTitle("Second", for: .normal)
-        self.second.backgroundColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
-        self.second.layer.cornerRadius = 30
-        
-        self.first.layer.shadowColor = UIColor.black.cgColor
-        self.first.layer.shadowOffset = CGSize(width: 0, height: 0.9)
-        self.first.layer.shadowOpacity = 0.5
-        self.first.layer.shadowRadius = 30
-        
-        self.second.layer.shadowColor = UIColor.black.cgColor
-        self.second.layer.shadowOffset = CGSize(width: 0, height: 0.9)
-        self.second.layer.shadowOpacity = 0.5
-        self.second.layer.shadowRadius = 30
-        
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            self.first.titleLabel?.font = .boldSystemFont(ofSize: UIScreen.main.bounds.size.width/25.0)
-            self.second.titleLabel?.font = .boldSystemFont(ofSize: UIScreen.main.bounds.size.width/25.0)
-        }
-        
-        
-        self.collectionView.isUserInteractionEnabled = false
-        resultLabel.text = ""
-        self.userScoreLabel.isHidden = true
-        self.cpuScoreLabel.isHidden = true
+        self.putUser = true
         self.userScoreLabel.textColor = self.userColor
         self.cpuScoreLabel.textColor = self.cpuColor
         self.userScoreLabel.layer.cornerRadius = 30
@@ -248,10 +195,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         
         collectionView.dataSource = self
         collectionView.delegate = self
-        
-        
-        //Layout
-        
+        // Do any additional setup after loading the view.
         self.collectionView.bounds.size.width = UIScreen.main.bounds.size.width - 10
         self.collectionView.bounds.size.height = UIScreen.main.bounds.size.width - 10
         self.collectionView.backgroundColor = #colorLiteral(red: 0.5524346232, green: 0.5491539836, blue: 0.5549585223, alpha: 1)
@@ -267,21 +211,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         self.banBgLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         self.banBgLabel.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1).isActive = true
         self.banBgLabel.heightAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1.03).isActive = true
-        
-        if UIDevice.current.userInterfaceIdiom == .pad{
-            self.FBLabel.translatesAutoresizingMaskIntoConstraints = false
-            self.FBLabel.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 1/4).isActive = true
-        }
-        
-        self.first.translatesAutoresizingMaskIntoConstraints = false
-        self.first.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: view.bounds.size.width/6.0).isActive = true
-        self.first.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1/4).isActive = true
-        self.first.heightAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1/4).isActive = true
-        
-        self.second.translatesAutoresizingMaskIntoConstraints = false
-        self.second.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -view.bounds.size.width/6.0).isActive = true
-        self.second.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1/4).isActive = true
-        self.second.heightAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1/4).isActive = true
         
         
         self.userScoreLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -314,41 +243,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         
         
         self.banInit()
-    }
-    
-    @IBAction func userFirst() {
-        self.userColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
-        self.cpuColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
-        self.uColor = "BLUE"
-        self.cColor = "RED"
-        self.orderHidden()
-        collectionView.reloadData()
-    }
-    
-    @IBAction func userSecond() {
-        self.putUser = false
-        self.userColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
-        self.cpuColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
-        self.uColor = "RED"
-        self.cColor = "BLUE"
-        self.orderHidden()
-        self.cpu()
-        collectionView.reloadData()
-        self.putUser = true
-    }
-    
-    func orderHidden(){
-        self.banInit()
-        self.canPut()
-        self.collectionView.isUserInteractionEnabled = true
-        self.userScoreLabel.isHidden = false
-        self.cpuScoreLabel.isHidden = false
-        self.userScoreLabel.textColor = self.userColor
-        self.cpuScoreLabel.textColor = self.cpuColor
-        self.FBLabel.isHidden = true
-        self.first.isHidden = true
-        self.second.isHidden = true
-        self.view.backgroundColor = self.userColor
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -388,6 +282,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             if (self.putUser && flipUser(index: c) > 0) {
                 undoUser()
                 cell.label.backgroundColor = #colorLiteral(red: 0.9852493405, green: 0.9793919921, blue: 0.989751637, alpha: 1)
+            }else if (!self.putUser && flipCPU(index: c) > 0) {
+                undoCpu()
+                cell.label.backgroundColor = #colorLiteral(red: 0.9852493405, green: 0.9793919921, blue: 0.989751637, alpha: 1)
             }
         default: break
         }
@@ -407,66 +304,67 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             case true:
                 if canPutUserCell.contains(c) {
                     _ = flipUser(index: c)
-                    self.cpuScore  = 0
-                    self.userScore = 0
                     self.putUser = false
                     self.canPut()
                     self.collectionView.reloadData()
                     self.setScore()
-                    UIView.animate(
-                            withDuration: 0.0,
-                            animations:{
-                                self.canPut()//配置可能Cell情報の更新
-                                self.collectionView.reloadData()// リロード
-                            }, completion:{ finished in
+                    if self.canPutCpuCell.count > 0 {
+                        self.view.backgroundColor = self.cpuColor
+                    }else{
+                        self.putUser = true
+                    }
+//                    UIView.animate(
+//                            withDuration: 0.0,
+//                            animations:{
+//                                self.canPut()//配置可能Cell情報の更新
+//                                self.collectionView.reloadData()// リロード
+//                            }, completion:{ finished in
                                 //-- CPC_Auto --------------------
-                                if self.canPutCpuCell.count > 0 {
-                                    self.view.backgroundColor = self.cpuColor
-                                    DispatchQueue.main.asyncAfter(deadline: .now()+0.2){
-                                        self.cpu()
-                                    }
+//                                if self.canPutCpuCell.count > 0 {
+//                                    self.view.backgroundColor = self.cpuColor
+//                                    DispatchQueue.main.asyncAfter(deadline: .now()+0.2){
+//                                        self.cpu()
+//                                    }
 //                                    UIView.animate(
 //                                            withDuration: 0.0,
 //                                            animations:{
 //                                                self.canPut()//配置可能Cell情報の更新
 //                                            }, completion:{ finished in
-//                                                while (self.canPutUserCell.count == 0){
-//                                                        self.cpu()
-//                                                    if self.canPutCpuCell.count == 0 { break }
-//                                                }
-//                                                if self.canPutUserCell.count != 0{
-//                                                    self.putUser = true
-//                                                }
-//                                            
+//                                                print(self.canPutUserCell.count)
+//                                                print(self.canPutUserCell.count == 0)
+//                                        while (self.canPutUserCell.count == 0){
+////                                            DispatchQueue.main.asyncAfter(deadline: .now()+0.4){
+//                                                self.cpu()
+//                                            if self.canPutCpuCell.count == 0 { break }
+////                                            }
+//                                        }
 //                                    });
-                                }else{
-                                    self.putUser = true
-                                    self.collectionView.reloadData()
-                                }
-                                //-- -------- --------------------
-//                                DispatchQueue.main.asyncAfter(deadline: .now()+0.1){
-//                                    self.putUser = true
-//                                    self.canPut()
-//                                    self.collectionView.reloadData()
 //                                }
-                        });
+                                //-- -------- --------------------
+//                                self.putUser = true
+//                                self.canPut()
+//                        });
                 }
                 
-//            case false://呼ばれない
-//                if flipRed(index: c) > 0 {
-//                    self.view.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
-//                    canPutBlueCell.removeAll()
-//                    canPutRedCell.removeAll()
-//                    self.user = true
-//                    collectionView.reloadData()
-//                }
-            default: break
+            case false:
+                if canPutCpuCell.contains(c) {
+                    _ = flipCPU(index: c)
+                    self.view.backgroundColor = self.cpuColor
+                    self.canPut()
+                    self.putUser = true
+                    collectionView.reloadData()
+                    self.setScore()
+                    if self.canPutUserCell.count > 0 {
+                        self.view.backgroundColor = self.userColor
+                    }else{
+                        self.putUser = false
+                    }
+                }
             }
             //終了
             UIView.animate(
                     withDuration: 0.0,
                     animations:{
-                        // リロード
                         self.canPut()//配置可能Cell情報の更新
                         self.setScore()
                         self.collectionView.reloadData()
@@ -480,33 +378,18 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         
     }
     
-    // -- CPU -----------------------------------------------
     func cpu(){
-        let semaphore = DispatchSemaphore(value: 0)
-        var f = false {
-            didSet{
-                semaphore.signal()
-            }
-        }
-//        let r = self.canPutCpuCell.randomElement()!
-        self.setScore()
-        //cpuが設置可能な場合
-//        _ = self.flipCPU(index: r)//置けるセルにランダムに配置している
-//        cpuAi({besiIndex in _ = self.flipCPU(index: besiIndex)})
-        _ = self.flipCPU(index: cpuAi())
-        self.view.backgroundColor = self.userColor
-        self.collectionView.reloadData()
-        f = self.canPut(flag: f)
-        semaphore.wait()
-        if canPutUserCell.count == 0 {
-            if canPutCpuCell.count != 0{
-                sleep(1)
+        if let r = self.canPutCpuCell.randomElement() {
+            self.setScore()
+            //cpuが設置可能な場合
+            _ = self.flipCPU(index: r)
+            self.view.backgroundColor = self.userColor
+            self.collectionView.reloadData()
+            self.canPut()
+            if canPutUserCell.count == 0 {
                 self.cpu()
             }
-        }else{
-            self.putUser = true
         }
-        
         //終了
         UIView.animate(
                 withDuration: 0.0,
@@ -519,25 +402,48 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                     self.fin()
         });
     }
-    // -- CPU-fin -----------------------------------------------
     
-    func canPut(flag: Bool = true) -> Bool {
-            self.canPutUserCell.removeAll()
-            self.canPutCpuCell.removeAll()
-            for y in 1..<9 { for x in 1..<9{
-                let c = y*9+x
-                if self.ban[c].user == self.BLANK {
-                    if self.flipUser(index: c) > 0 {
-                        self.undoUser()
-                        self.canPutUserCell.append(c)
-                    }
-                    if self.flipCPU(index: c) > 0 {
-                        self.undoCpu()
-                        self.canPutCpuCell.append(c)
-                    }
+//    func userAuto(){
+//        if let r = self.canPutUserCell.randomElement() {
+//            self.setScore()
+//            //cpuが設置可能な場合
+//            _ = self.flipUser(index: r)
+//            self.view.backgroundColor = self.cpuColor
+//            self.collectionView.reloadData()
+//            self.canPut()
+//            if canPutCpuCell.count == 0 {
+//                self.userAuto()
+//            }
+//        }
+//        //終了
+//        UIView.animate(
+//                withDuration: 0.0,
+//                animations:{
+//                    // リロード
+//                    self.canPut()//配置可能Cell情報の更新
+//                    self.setScore()
+//                    self.collectionView.reloadData()
+//                }, completion:{ finished in
+//                    self.fin()
+//        });
+//    }
+    
+    func canPut(){
+        self.canPutUserCell.removeAll()
+        self.canPutCpuCell.removeAll()
+        for y in 1..<9 { for x in 1..<9{
+            let c = y*9+x
+            if ban[c].user == self.BLANK {
+                if flipUser(index: c) > 0 {
+                    undoUser()
+                    canPutUserCell.append(c)
                 }
-            }}
-        return !flag
+                if flipCPU(index: c) > 0 {
+                    undoCpu()
+                    canPutCpuCell.append(c)
+                }
+            }
+        }}
     }
     
     func setScore(){
@@ -572,21 +478,17 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         nextVc.uColor = self.uColor
         nextVc.cColor = self.cColor
         
-        nextVc.single = true
+        nextVc.single = false
 
         if self.userScore > self.cpuScore {
-            nextVc.rLabel = "YOU WIN!"
+            nextVc.rLabel = "BLUE WIN!"
         }else if self.userScore < self.cpuScore {
-            nextVc.rLabel = "YOU LOSE."
+            nextVc.rLabel = "RED WIN!"
         }else if self.userScore == self.cpuScore {
             nextVc.rLabel = "DRAW!"
         }
         
         nextVc.modalPresentationStyle = .automatic //.fullScreen
-        
-//        if UIDevice.current.userInterfaceIdiom == .pad{
-//            nextVc.modalPresentationStyle = .fullScreen
-//        }
 //        nextVc.isModalInPresentation = true //下スワイプ禁止。ダサいのでスワイプした時にスタート画面に戻る処理を別で書くと良い
         
         nextVc.presentationController?.delegate = self
@@ -601,7 +503,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             //コンテキストを閉じる
             UIGraphicsEndImageContext()
             nextVc.rImage = image
-            self.resultLabel.isHidden = true
             self.userScoreLabel.isHidden = true
             self.cpuScoreLabel.isHidden = true
             self.present(nextVc, animated: true, completion: nil)
@@ -610,7 +511,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
 }
 
-extension ViewController: UIAdaptivePresentationControllerDelegate {
+extension DoubleViewController: UIAdaptivePresentationControllerDelegate {
     
     //遷移先のvcからdismissで戻ってきたときに呼ばれる
     func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
